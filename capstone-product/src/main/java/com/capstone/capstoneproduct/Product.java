@@ -1,4 +1,4 @@
-package com.capstone.capstoneproduct.entity;
+package com.capstone.capstoneproduct;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
