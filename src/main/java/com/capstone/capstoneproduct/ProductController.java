@@ -28,7 +28,7 @@ import com.capstone.capstoneproduct.service.ProductServiceImpl;
 
 @RestController
 @RequestMapping("/product")
-@CrossOrigin(origins = "https://domainofchain.s3.us-east-2.amazonaws.com")
+@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200/"})
 public class ProductController {
 	@Autowired
 	ProductServiceImpl service;
