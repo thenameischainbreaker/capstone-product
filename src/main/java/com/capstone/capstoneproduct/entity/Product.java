@@ -1,4 +1,4 @@
-package com.capstone.capstoneproduct;
+package com.capstone.capstoneproduct.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -65,4 +65,11 @@ public class Product {
 	public void setP_description(String p_description) {
 		this.p_description = p_description;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [p_id=" + p_id + ", p_name=" + p_name + ", image_id=" + image_id + ", p_price=" + p_price
+				+ ", p_description=" + p_description + "]";
+	}
+	
 }
