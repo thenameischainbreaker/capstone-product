@@ -24,5 +24,6 @@ public interface ProductService {
 	public boolean deleteProductCategory(ProductCategory newProductCategory);
 	public Integer getTotalPriceByIds(List<Integer> productIds);
 	public List<Product> getAllByIds(List<Integer> productIds);
+	public List<Category> getAllCategories();
 	
 }

@@ -28,7 +28,11 @@ import com.capstone.capstoneproduct.service.ProductServiceImpl;
 
 @RestController
 @RequestMapping("/product")
-@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200"})
+
+
+
+@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200/"})
+
 public class ProductController {
 	@Autowired
 	ProductServiceImpl service;
@@ -149,6 +153,11 @@ public class ProductController {
 	@PostMapping("/getAllByIds")
 	public List<Product> getAllByIds(@RequestBody List<Integer> productIds){
 		return service.getAllByIds(productIds);
+	}
+	
+	@GetMapping("/getAllCategories")
+	public List<Category> getAllCategories(){
+		return service.getAllCategories();
 	}
 	
 	}

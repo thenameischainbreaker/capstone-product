@@ -139,6 +139,12 @@ ProductCategoryRepository productCategoryRepo;
 		return productRepo.findAllById(productIds);
 	}
 
+	@Override
+	public List<Category> getAllCategories() {
+		// TODO Auto-generated method stub
+		 return categoryRepo.findAll();
+	}
+
 	
 	
 	
