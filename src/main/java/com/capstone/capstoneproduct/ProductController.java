@@ -92,7 +92,7 @@ public class ProductController {
 			if(service.updateProduct(product))
 				return "\"Product Updated\"";
 			else
-				return "Product Not Updated";
+				return "\"Product Not Updated\"";
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
