@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +32,7 @@ import com.capstone.capstoneproduct.service.ProductServiceImpl;
 
 
 
-@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200/"})
+@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com", "http://localhost:4200/", "http://localhost:4200/","https://capstone-angular-jj.s3.us-east-2.amazonaws.com"})
 
 public class ProductController {
 	@Autowired
@@ -40,7 +41,7 @@ public class ProductController {
 	private String gatewayHost;	
 	//ProductDAO repo;
 	
-	@PostMapping("/add")
+	@PostMapping(path="/add", produces=MediaType.APPLICATION_JSON_VALUE)
 	//check if admin and logged in
 	public String postProduct(@RequestHeader("googleBearerToken") String headerValue, @RequestBody Product product) 
 	{
@@ -49,25 +50,27 @@ public class ProductController {
 			  String url = "http://" + gatewayHost + "/user/getUserRole";
 		//	  System.out.println("gatewayHost: " +gatewayHost);
 			  UserRole response = restTemplate.postForObject(url, headerValue, UserRole.class); 
-			if(response.getRole() == Admin.FALSE || !response.isTokenValid())
+			if(response.getRole() == Admin.FALSE || !response.isTokenValid()) {
+				System.out.println("response.getRole: " + response.getRole());
+				System.out.println("!response.isTokenValid: " + !response.isTokenValid());
 				throw new SecurityException();
-			
+			}
 			
 			
 			if(service.postProduct(product))
-				return "Product Posted";
+				return "\"Product Posted\"";
 			else
-				return "Product Not Posted";
+				return "\"Product Not Posted\"";
 		}
 		catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in adding product. Check permissions.";
+			return "\"Error in adding product. Check permissions.\"";
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in adding product.";
+			return "\"Error in adding product.\"";
 		}
 	}
 	
@@ -87,18 +90,18 @@ public class ProductController {
 			
 			
 			if(service.updateProduct(product))
-				return "Product Updated";
+				return "\"Product Updated\"";
 			else
 				return "Product Not Updated";
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in updating product. Check permissions.";
+			return "\"Error in updating product. Check permissions.\"";
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in updating product";
+			return "\"Error in updating product\"";
 		}
 	}
 	
@@ -129,12 +132,12 @@ public class ProductController {
 	} catch (SecurityException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-		return "Error in adding category. Check permissions.";
+		return "\"Error in adding category. Check permissions.\"";
 	}
 	catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-		return "Error in adding category.";
+		return "\"Error in adding category.\"";
 	}
 	}
 	
